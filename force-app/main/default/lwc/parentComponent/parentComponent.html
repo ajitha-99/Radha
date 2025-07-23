@@ -1,0 +1,15 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-21-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+ we can provide static data to the child component so that we can access that data from the child component using @api decorator
+ If we are using boolean variable and not sending true into the property then also it will work like true only and is considered as true
+-->
+<template>
+    <c-child-component display ={greeting}
+    display-greeting = "Welcome to Day20 of our Bootcamp"
+    user={userDetails}
+    is-user-available></c-child-component>
+</template>

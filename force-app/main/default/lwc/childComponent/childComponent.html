@@ -1,0 +1,33 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-21-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title = "Child Component">
+
+<p>
+    <lightning-formatted-text
+     value={display} >
+    </lightning-formatted-text></p>
+    <p>
+    <lightning-formatted-text
+     value={displayGreeting} >
+    </lightning-formatted-text></p>
+    <p>
+    <lightning-formatted-text
+     value={user.fname} >
+    </lightning-formatted-text></p>
+      <p>
+    <lightning-formatted-text
+     value={user.lname} >
+    </lightning-formatted-text></p>
+    <p> Is User Available: {isUserAvailable} 
+</p>
+
+
+    </lightning-card>
+    
+</template>

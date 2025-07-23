@@ -1,0 +1,28 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-22-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="conditional Rendering" icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+           <lightning-input 
+           type="checkbox" 
+           label="Display Message"
+            name="input1"
+            onchange={changeHandler}
+            ></lightning-input> 
+        </div>
+        <div class="slds-var-p-around_small">
+            <template lwc:if={displayMessage}>
+                <p> Welcome to the Day 21 of the BootCamp</p>
+            </template> 
+            <template lwc:else>
+                <p> you are not authorized to see this message</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
+

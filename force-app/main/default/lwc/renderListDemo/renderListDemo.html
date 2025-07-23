@@ -1,0 +1,39 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-22-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Render List" icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+            <template for:each={superStars} for:item="star">
+                <p key={star}>You are a {star}</p>
+            </template>
+        </div>
+
+    </lightning-card>
+    <lightning-card title="Render Complex List" icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+            <template for:each={contactList} for:item="Contacts">
+                <p key={Contacts.id}>{Contacts.fname} {Contacts.lname}, {Contacts.age}</p>
+            </template>
+        </div>
+
+    </lightning-card>
+     <lightning-card title="Render Complex List - Iterator" icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+            <template iterator:it={contactList}>
+                <div key={it.value.id}>
+                <div lwc:if={it.first} class="list-first"></div>
+
+                <p>{it.value.fname}, {it.value.lname}</p>
+                <div lwc:if={it.last} class="list-last"></div>
+
+                </div>         
+            </template>
+        </div>
+
+    </lightning-card>
+</template>

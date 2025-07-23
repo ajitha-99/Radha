@@ -1,0 +1,24 @@
+/* accessing from the css library using import */ 
+
+@import "c/cssLibrary";
+
+/* accessing custom design aura token from css to html in LWC component*/
+
+.customauratoken{
+
+        background-color: var(--c-custombackground);
+}
+/*Design tokens*/
+.brandbuttonbg{
+    --slds-c-button-brand-color-background: rgb(232, 232, 193);
+    --slds-c-button-brand-color-background-hover: green;
+    --slds-c-button-brand-color-background-active: blue;
+    margin-top: 60px;
+
+
+}
+/*
+.brandbuttonbg{
+    --slds-c-button-brand-color-background:var(--c-custombackground);
+}
+   Another way of using design token in the override styling css */

@@ -1,0 +1,87 @@
+Decorators in LWC
+@api
+@track
+@wire
+ --- By default all properties are private
+@api-
+-- Public Properties are something which can be accessed outside of the component
+--To expose a public property , decorate a field with @api
+-- which can be accessed by another component or parent component
+
+
+
+@track-
+-- To tell the framework to observe changes to the properties of an object, decorate the field with @track.
+--If you want to observe an array or a object
+
+
+
+
+@wire--
+-- To read salesforce data, LWC use a reactive wire service. when the wire service provisions data, the component rerenders(referesh)
+-- you cannot perform DML operations using @wire decorator.
+--you cannot create,delete,update the records using wire decorator.
+--you can only read data
+
+Properties---
+
+Private --
+
+--If yo are not putting any decorator or if you are putting @track decorator the properties are private
+-- access within the component
+-- maintain internal state. whenever the variable has rendered you want to send the data to UI in such scenarios we use private properties.
+
+Public--
+
+-- If you are decorating a variable with @api then it is considered as the public api.
+-- isexposed as false on the component and you are decorating the variable as @api then it is considered as public property.
+-- passed from a parent component.
+
+global---
+
+-- If you are decorating a variable with @api and isexposed to true then it is considered as the global api. It means you are making the component available on the UI
+
+-- you can only access the private properties and public properties in the HTML file.To access you have to put {} around it.
+
+
+Primitive properties--
+
+-- whenever you are directly changing the primitive properties it will directly rerender in the UI
+
+Data Binding: Important point
+
+Data binding always works in one way
+
+whenever you are changing any property in js file, it will be automatically replicate in HTML file.
+
+whenever you have to send any data/communicate from HTML to js you have to take the help of events
+
+whenever we have to access the properties in any method irrespective of the property(public or private) we should always use this operator followed by property name/variable name.
+
+--- Reactivity in private object nested properties
+
+@api decorator---
+
+-- it sends data from parent to child component and dis;lays in the /ui
+
+--it is always reactive.
+--As soon as the value of the property is changed the @api decorator the component automatically renders
+-- you have two differnt components one is filter component and the other is parent component where you are actually showing data.
+--what ever values that the user is entering from the filter component you have to accept that data  and according to that display output.
+
+--from one component you have to pass data from filter component and do display the component that is from parent component to child component.
+
+-- when we want display the text from the private property that is our parent component to the public property that is our child component then go for formatted text from the out of the box  component library and display the text that is from the private property.
+
+//getter
+
+-- A getter is a function that compute a value from a property
+-- to populate the class dynamically in a html file we have to use getter method in the js file
+-- getter method must have return statement
+
+//setter
+
+--whenever you have to modify the values that are coming from parent component
+-- setter only sets the value
+-- getter returns the value
+-- best practice is to annotate @api on the getter method as it returns the value that is reflected from the setter

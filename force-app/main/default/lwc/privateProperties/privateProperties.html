@@ -1,0 +1,30 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-20-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  use lighning card to get the background of the component
+  use css from slds to add spacing and extra styling
+  in the icon name the type  like the standard,utility always should be in lowercase
+We can use th eclass in the p tag but to avoid repeation of code we can use the class in the div tag
+ -->
+<template>
+   
+<lightning-card  title="Welcome to LWC">
+          <div class="slds-p-left_small">
+            <p>{greeting}</p>
+           <p>{welcome}</p>
+</div>
+<div class="slds-p-left_small">
+<lightning-button variant="brand" 
+label="Change Text" 
+title="Change Default Text" 
+icon-name="standard:announcement" 
+class="slds-m-left_x-small"
+onclick={clickHandler}>
+</lightning-button>
+
+</div>
+        </lightning-card>
+</template>

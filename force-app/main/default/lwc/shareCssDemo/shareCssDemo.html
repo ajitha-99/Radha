@@ -1,0 +1,27 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-22-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <h1> Tech Journey With Ankit</h1>
+
+    <p class="paraclass"> Today's Session is all about the CSS</p>
+    <div class="customauratoken">
+        <h2> Accessing the custom design Aura Token</h2>
+    </div>
+    <div class="slds-m-top_large">
+        <lightning-button variant="brand" 
+        label="Success" title="Successful action" 
+        onclick={handleClick} 
+        class="slds-m-top_large brandbuttonbg">
+    </lightning-button>
+    </div>
+    <template lwc:if={message}>
+    <div class="slds-m-top_large">
+        <p>The ouput is {message}</p>
+        </div>
+    </template>
+</template>

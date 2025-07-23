@@ -1,0 +1,67 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-21-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+   <lightning-card  title="Calculator" icon-name= custom: custom14>
+    <div class="slds-var-p-around_small">
+        <!-- inputs-->
+         <lightning-input 
+         label="Number1" 
+         name ="number1"
+         onchange={changeHandler}
+         placeholder="Enter Number 1"
+         value={numberone}
+         ></lightning-input>
+         <lightning-input 
+         label="Number2" 
+         name ="number2"
+         onchange={changeHandler}
+         placeholder="Enter Number 2"
+         value={numbertwo}
+         ></lightning-input>
+    </div>
+    <div class="slds-var-p-around_medium">
+        <!-- Buttons-->
+          <lightning-button 
+          label="Add" 
+          variant="brand" 
+          class="slds-var-p-around_small"
+          icon-name="utility:add"
+          onclick={calculateInput}>
+        </lightning-button>
+             <lightning-button 
+          label="Subtract" 
+          variant="brand" 
+          class="slds-var-p-around_small"
+          icon-name="utility:dash"
+          onclick={calculateInput}>
+        </lightning-button>
+             <lightning-button 
+          label="Multiply" 
+          variant="brand" 
+          class="slds-var-p-around_small"
+          icon-name="utility:close"
+          onclick={calculateInput}>
+          </lightning-button>
+               <lightning-button 
+          label="Division" 
+          variant="brand" 
+          class="slds-var-p-around_small"
+          icon-name="utility:magicwand"
+          onclick={calculateInput}>
+        </lightning-button>
+        
+    </div >
+    <template lwc:if={displayOutput}>
+        <div class ="slds-var-p-around_medium">
+            <p>
+               The result is: {result}</p>
+            </div>
+             </template>
+        </lightning-card>
+
+</template>

@@ -1,0 +1,69 @@
+1.you have to start the component always start with small letters
+2.your name should not contain any special characters
+3. Name should not contain hyphen-
+4.Name must be unique in the namespace
+5. you cannot include any spaces between the names
+6. It should not contain any underscores at the end or starting
+7. It cannot contain two consecutive underscores
+8. folder and file names must have the same prefix
+
+Case Types:
+
+Pascal Case: TechJourneyWithAnkit -- It is used to create a js class Name always in pascal case(Item Name)
+Camel Case: techJourneyWithAnkit -- components and property(variable) names in javascript are in camel case
+Kebab Case: tech-journey-with-ankit -- used for calling from one component to another component. From parent to child or child to parent. Every thing will be in the lower case.tech-journey-with-ankit. Anything we use html tags or classes or components we use.
+
+When I don't have the js file and html file and contains only css file and meta xml file it is referred as css bundle.
+
+Service component contains js and meta file and html file is not available
+
+Client side controller -- javascript file
+server side controller -- apex  as server side
+
+when we need to syle the lightning web componenets we mostly use lightning design system. we don't need to write any additional code. In case if the requirements are not matching with the LDS then we have to create a new CSS file to apply styling.
+
+The style sheet name should be same as the name of the component.
+---due to shadow dom the css styles defined in the parent component don't reach to child.
+
+--- styles defined in the style sheet are scoped to the component.
+
+when ever you have to apply css to the over all child component you should not do it from the parent component. you have to use :host selector. 
+
+In the css file we have to use host selector and it will cover the complete child component styling.
+
+----Share one css file across the LWC components. It is like reusable bundle for all the components that require the same styling. It is known as CSS Custom Library.
+ --- the component contains only two files.
+ ---1.css file
+ ---2.XMl file
+
+ ----syntax: import "namespace/modulename";
+         @import "c/cssLibrary";
+
+---- Design tokens
+1.Design tokens are named entities that store visual design attributes, such as margins and spacing values,font sizes or font families etc.
+2.Whenever we give name to the entity that is referred as design tokens.
+3. To reference a design token in your lightning web component css , use the --lwc- prefix and reference the design token in camel case.
+4. Use css variables in a lightning web component to access lightning design system design tokens
+5.Either use a global token or a custom aura token
+6. global token provided by the salesforce and can be used in the salesforce
+7. aura token means if we have to use our own design token when it is not available in the salesforce design tokens then we go for aura tokens.
+---syntax: <aura: tokens>
+<aura:token name ="myBackgroundcolor" value="" />
+</aura:token>
+create own token steps:
+1. Navigate to the developer console
+2.The name of the token should be defaultTokens.
+3.From file->New->Lightning tokens.
+4. when ever we use our own tokens we have to use the syntax below
+color: var(--c-our token class name in the aura token);
+5. you can use it in multiple components
+
+-- Another way of css. changing the default css provided by salesforce especailly for variant attribute like success button in green color. if we want to change the background color of that then we have to go for styling hooks
+Using Style Hooks
+
+When ever we have to change the out of box component that salesforce is offering then we have to go for styling hooks.
+When ever we want to change the base component styling that salesforce is offering then we should go for the style hooks.
+when wver we have to override the css of the base component that salesforce is offering then we have to for styling hooks.
+Salesforce provides the custom styling hooks that we wan tto overide. we can check those in the appropiate attribute and click on the styling hooks overview and select the one we want.
+you should not override the salesforce base component with the custom css class.
+                     

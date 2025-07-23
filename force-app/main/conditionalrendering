@@ -1,0 +1,42 @@
+whenever you have to go and display your components conditionally. any condition is true then and only you have to display that component.
+ to go and use conditional rendering we use lwc:if tag
+ if this property is truthify then and only my component is rendered. Otherwise it will check the other condition and finally the else statement if none of the conditions are true.
+ our legacy code is if:true|false.recently salesforce came up with new syntax like lwc:if and lwc:elseif, lwc:else
+ lwc:elseif must be preceeded by lwc:if
+ lwc:else must be preceeded by either if or else if
+
+ Rendering the list:
+
+ --we have to deal with more than one record
+ you have to get more than one record one by one
+ we have to make api call to other system in the form of array
+
+ option1: for:each
+ <template for:each. you will go and specify the array you want as ouput>
+
+ for:item--- to access the current item or one item from array
+ it is somewhat similar as apex
+ for(contact con: contacts)
+ contacts as for:each
+ con as for:item
+
+ --immediately whenever you start iterating you have to specify the key
+ the key must be the unique id to each element.
+
+ render List:iterator
+ when we have to use iterator and when we have to use for:each
+
+ both do the same thing
+ -- when ever we have to apply speacial behavior to the first or last item in the list then we have to go for iterator
+ -- with these boolean variables it.first and it.last we can identify which is first and which is last item. 
+ --you want to display some header before moving to the first component.if you want to do some processing as soon as the last component is loaded.
+
+ <template iterator:it={contacts}> iterator name can be anything. generrally people use it followed by the array name.
+ --whenever you ahve to access the array we have to use key={it.value.id}
+
+ -- queryselector
+
+ -- whenever you have to access any elements from dom we have to go for queryselector
+ --don't use iD selectors with querylocator
+ in lwc we use as
+ this.template.queryselector

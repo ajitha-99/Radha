@@ -1,0 +1,35 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-21-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title = "Dynamic QuerySelector CSS" icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+            <p class={pColor}>Welcome to the QuerySelector Class</p>
+            </div>
+            <div class="slds-var-p-around_small">
+<lightning-button 
+    label ="Add CSS"
+    variant="brand"
+    onclick={addCssHandler}
+    class="slds-var-p-around_small">
+</lightning-button>
+<lightning-button 
+    label ="Remove CSS"
+    variant="brand"
+    onclick={removeCssHandler}
+    class="slds-var-p-around_small">
+</lightning-button>
+<lightning-button 
+    label ="Toggle CSS"
+    variant="brand"
+    onclick={toggleCssHandler}
+    class="slds-var-p-around_small">
+</lightning-button>
+
+            </div>
+    </lightning-card>
+</template>

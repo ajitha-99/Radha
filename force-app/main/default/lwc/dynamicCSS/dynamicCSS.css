@@ -1,0 +1,10 @@
+.chocolate-color{
+    background-color: chocolate;
+    width: 50%;
+    padding: 30px;
+    font-size: large;
+}
+
+.green-border{
+    border: solid green;
+}
