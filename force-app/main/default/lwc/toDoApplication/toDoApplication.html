@@ -2,11 +2,16 @@
     @description       : 
     @author            : ChangeMeIn@UserSettingsUnder.SFDoc
     @group             : 
-    @last modified on  : 07-24-2025
+    @last modified on  : 07-27-2025
     @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
     with the help of for:index we can identify which element is removed from the list
     -->
     <template>
+        <lightning-card>
+            <div style="font-size: large; font-style: bold">
+                To Do Manager
+            </div>
+        </lightning-card>
         <div class="slds-grid slds-gutters">
     <div class="slds-col">
         <lightning-card title="Add Task">
@@ -101,7 +106,7 @@
     <div class="slds-col">
         <lightning-card title="Completed Lists">
 
-        <div class="slds-var-p-around_small "
+        <div class="slds-var-p-around_small"
         ondragover={allowDrop}
         ondrop={dropElementHandler}>
             <template 

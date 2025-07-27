@@ -25,12 +25,12 @@ resetChangeHandler(event){
 }
 
 addTaskHandler(event){
-    //set the end date to today if it is missing/null
+    //condition1: set the end date to today if it is missing/null
     //Salesforce accepts the date in Iso form so we have converted the date as it dispalys date timestamp by default
     if(!this.taskdate){
         this.taskdate = new Date().toISOString().slice(0,10);
     }
-// if my validation is true means there are no tasks add the task to the to do list
+//condition2: if my validation is true means there are no errors in the tasks add the task to the to do list
 // to do list means incomplete task property we are referring as to do list
     if(this.validateTask()){
         //if the task is valid then push the task to the array using spread operator
@@ -53,6 +53,8 @@ addTaskHandler(event){
 validateTask(){
     //check if the task is empty or not
     let isValid = true;//flag to set initially everything to true
+    //Find the input element with the class 'taskname' in the HTML template in order 
+    // to display custom validity and report validity we use ths method
     let element = this.template.querySelector(".taskname");
     //condition 1 --- check the task name is empty or not
     //condition 2 --- check the task name is already present(duplicate) in the array or not
@@ -75,6 +77,7 @@ else{
            element.setCustomValidity("Task already present");
        }
     }
+    // reset the custom validity message to empty if there are no errors found
     if(isValid){
         element.setCustomValidity("");
     }
@@ -121,7 +124,7 @@ completetask(event){
 
 
 }
-//which attribute you want to access that you have to use after dataset
+//which attribute you want to access that you have to use after dataset. in the html we are accessing itemm in the data attribute.so we have to use item
 dragHandler(event){
     event.dataTransfer.setData("index", event.target.dataset.item);
 
@@ -133,10 +136,12 @@ allowDrop(event){
 //whatever data we have to set during dragging we have read that data 
 dropElementHandler(event){
     let index = event.dataTransfer.getData("index");
+        this.refreshData(index);
 }
 
 refreshData(index){
-       let removeitem =  this.incompletetask.splice(index, 1);
+
+     let removeitem =  this.incompletetask.splice(index, 1);
 
     let sortedArray = this.sortTask(this.incompletetask);
     this.incompletetask = [...sortedArray];
