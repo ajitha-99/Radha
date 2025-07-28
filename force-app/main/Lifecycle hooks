@@ -1,0 +1,39 @@
+Lifecycle hooks
+
+A callback method that triggers at different stages of a component which is triggered at specific stage of a component life cycle
+
+framework will automatically trigger a method on a specific phase of a component.
+
+DOM: Document object model
+
+Parent component
+
+when we insert the component inside the DOM the flow is in the screenshot saved in my documents.
+
+we have two specific methods that are not available in the other languages are
+1. renderedcallback();
+2. errorcallback();
+constructor---------
+
+the first line of code in the constructor method is super() method with no properties.
+In ideal scenarios we should not disturb the constructor lifecycle()
+
+connected callback()--
+when a component is inserted into the DOM
+disconnected callback()--first parent and next child will be called
+when a component is removed from the DOM
+we do cleanup in the disconnected callback
+
+render()--
+ whenever you have to switch your html templates this method is useful
+when you have a functionality where the javascript logic is common but the way you have to display the data is totally different then only we have to use render()
+
+rendercallback()---
+ the logic we write in the method will be executed multiple times.
+ you have to load third party javascript logics
+ load third party css
+ load third party static resources in our componenets. in such scnarios we have to go for this method.
+
+ errorCallback(){
+    It is more like try catch block in the apex programming
+ }
