@@ -1,0 +1,24 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 08-01-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  As soon as the user click on the contact we have to get the details of 
+  the contact details and dispaly in the child component using 
+  href=# and onclick of the contact in the a tag
+-->
+<template>
+    <a href="#" onclick={handleClick}>
+    <lightning-layout vertical-align="center">
+<lightning-layout-item padding="around-small">
+    <img src={contact.PhotoUrl}>
+</lightning-layout-item>
+
+<lightning-layout-item>
+    <p>{contact.Name}</p>
+</lightning-layout-item>
+
+    </lightning-layout>
+    </a>
+</template>

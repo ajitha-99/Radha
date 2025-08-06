@@ -1,0 +1,23 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-28-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Life Cycle Hooks">
+        <lightning-input
+        class="slds-p-around_small"
+        name="displayChild"
+        checked={displayChild}
+        type="checkbox"
+        label="Invoke Child Hooks"
+        onchange={handleChange}
+        >
+        </lightning-input>
+        <template lwc:if={displayChild}>
+        <c-child-hook></c-child-hook>
+        </template>
+    </lightning-card>
+</template>

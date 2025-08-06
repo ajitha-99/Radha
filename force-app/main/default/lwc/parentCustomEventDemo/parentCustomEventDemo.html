@@ -1,0 +1,17 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-31-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Custom Event Demo">
+        <template lwc:if={displayMessage}>
+        <p class="slds-var-p-around_small">Welcome to the BootCamp on Custom Event</p>
+      </template>
+        <div>
+        <c-child-custom-event-demo ondisplaymsg={displayMessageHandler}></c-child-custom-event-demo>
+        </div>
+        </lightning-card>
+</template>

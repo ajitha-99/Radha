@@ -1,0 +1,24 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-30-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Get Pick List Values Demo">  
+        <template lwc:if={ratingProp.data}>
+        <lightning-combobox
+            name="progress"
+            label="Rating"
+            value={value}
+            placeholder="Select Rating"
+            options={ratingProp.data.values}
+            onchange={handleChange} 
+            class="slds-var-p-around_small"></lightning-combobox>
+
+    <p>Selected value is: {value}</p>
+    
+            </template>
+        </lightning-card>
+</template>

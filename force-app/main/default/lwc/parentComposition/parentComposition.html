@@ -1,0 +1,18 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 08-06-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Grandparent -> parent -> child
+-->
+<template>
+   <p>I am  Parent component</p>
+   <!--this Div is the DOM-->
+        <div class="slds-var-p-around_small" onfire={firechildDivhandler}>
+      <!--this is the Shadow DOM-->       
+          <c-child-composition onfire={firechildhandler}></c-child-composition>
+
+        </div>
+
+</template>

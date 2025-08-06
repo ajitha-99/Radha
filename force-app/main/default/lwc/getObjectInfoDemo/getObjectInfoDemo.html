@@ -1,0 +1,28 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-30-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Get Object Info Demo" icon-name="custom: custom14">
+        
+        <template lwc:if={accountinfo}>
+            <div class="slds-var-p-around-small">
+            <p>Account API Name: {accountinfo.apiName}</p>
+            <p>Account API Name: {accountinfo.labelPlural}</p>
+            </div>
+            <div class="slds-var-p-around_small">
+                <p>Relationships of Account</p>
+            <template for:each={accountinfo.childRelationships} for:item="relationship">
+                <p key={relationship.childObjectApiName}>{relationship.childObjectApiName}</p>
+            </template>
+            </div>
+        </template>
+        <template lwc:elseif={accounterror}>    
+            <c-error-panel errors={accounterror}></c-error-panel>
+        </template>
+        
+    </lightning-card>
+</template>

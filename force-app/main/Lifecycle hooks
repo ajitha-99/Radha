@@ -37,3 +37,44 @@ rendercallback()---
  errorCallback(){
     It is more like try catch block in the apex programming
  }
+
+ Work with salesforce data:
+
+ Base Components:
+--Whenever you want the UI with minimum customizations, want to use --salesforce UI then we should go for base components.
+--The UI is ready in minimum time.
+--The framework will take care of the security automatically.FLS,Object level security.
+
+UI Adapters, Wire Adapters
+In some scenarios the base component is not providing the UI  that is needed by the client and you don't need to write the apex. In such scenarios
+UI API adapters are used.
+--Instead we update,create the records the functions do the same.
+
+Apex:
+--On UI we have to bring the complex operations using soql, sosl, 
+--complex business to fetch data using DML opertions with the bulk number of records.
+-- we have to implement our own security model according to the business requirements.
+-- We don't need recordId in case of apex.
+
+--- The key limitation of UI Adapters and Base components is in order to perform the operations we need record Id.
+
+--- when method is annotated with cacheable=true it improves client logic performance without making a server call.
+--you cannot perform any DML operation in the method when we use cacheable=true.
+-- when ever we have to read the data in that scenario only we have to use cacheable=true
+-- it is mandatory to use cacheable=true, when we use @wire decorator in Js
+
+--@wire adapter uses a property(reading directly form the apex) or function(imperative apex call).
+-------when we have to read the data from server and do not need to perform any operations in the Js then we have to use the property.
+-------when we have to perform some opertions in the JS after the server call we have to use function.
+
+--- we do have other wire adapters are UI/API adapters that we use when we specifically deal with records.
+----- we use UIrecordadapter which specifically deals with records
+----- we have other type of adapter for object and  other for related lists
+
+Lightning Data service: LDS
+
+---It is client side data caching framework.it is provided by salesforce to cache the data from client side.
+---In order to improve the performance of the component.
+--- we can perform CRUD operations on the data using LDS.
+-- It uses a shared cache performance.
+--If the data is available in the cache it gets it from cache otherwise it makes a server call and get the data to update

@@ -1,0 +1,47 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 08-01-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  whenever we deal with more than one record we use contacts.data in wire adapter
+  to display the details rather than doing it here we do display in the child component
+  instead of repeating the code. here we are iterting the data
+-->
+<template>
+    <lightning-card title="Contact Details">
+        <lightning-layout  class="slds-var-p-around_small">
+            <lightning-layout-item>
+                <template lwc:if={contacts.data}>
+                    <template for:each={contacts.data} for:item="contact">
+                    <c-contact-item 
+                    key={contact.Id} 
+                    contact={contact}
+                    oncontactselect={selectionHandler}></c-contact-item>
+                        </template>  
+                    </template>
+</lightning-layout-item>
+<lightning-layout-item class="slds-var-p-around_small">
+    <template lwc:if={display}>
+    <template lwc:if={selectedContactId}>
+        <img src={selectedContactId.PhotoUrl}/>
+        <p>{selectedContactId.Name}</p>
+        <p>{selectedContactId.Title}</p>
+        <p>
+            <lightning-formatted-phone 
+            value={selectedContactId.Phone}>
+        </lightning-formatted-phone>
+        </p>
+        <p>
+             <lightning-formatted-email
+            value={selectedContactId.Email}>
+        </lightning-formatted-email></p>
+    </template>
+    
+    </template>
+
+
+</lightning-layout-item>
+</lightning-layout>
+    </lightning-card>   
+</template>

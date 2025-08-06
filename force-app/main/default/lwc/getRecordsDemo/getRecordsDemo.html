@@ -1,0 +1,20 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-30-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  // the actual data is stored in the results in the data so we have used the outputnames.results in the for:each loop
+  whenever we use getrecords
+-->
+<template>
+    <lightning-card title="Get Records Demo">
+        <template lwc:if={outputNames}>
+            <template for:each={outputNames.results} for:item="output">
+                <p class="slds-var-p-around_small" key={output.result.id}>{output.result.fields.Name.value}</p>
+            </template>
+        </template>
+       
+    </lightning-card>
+</template>

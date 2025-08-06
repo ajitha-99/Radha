@@ -1,0 +1,56 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-30-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Navigation Demo">
+        <div class="slds-var-p-around_small">
+        
+        <lightning-button label="Go to Home Page" 
+        variant="brand"
+        onclick={navHomeclickHandler} 
+        class="slds-var-p-around_small">
+
+        </lightning-button>
+    </div>
+     <div class="slds-var-p-around_small">
+        
+        <lightning-button label="Go to Account List View" 
+        variant="brand"
+        onclick={navAccListViewclickHandler} 
+        class="slds-var-p-around_small">
+
+        </lightning-button>
+    </div>
+     <div class="slds-var-p-around_small">
+        
+        <lightning-button label="Create New Account- Default" 
+        variant="brand"
+        onclick={createDefaultAccountclickHandler} 
+        class="slds-var-p-around_small">
+
+        </lightning-button>
+    </div>
+    <div class="slds-var-p-around_small">
+        
+        <lightning-button label="Create New Account- New" 
+        variant="brand"
+        onclick={createNewAccountclickHandler} 
+        class="slds-var-p-around_small">
+
+        </lightning-button>
+    </div>
+    <div class="slds-var-p-around_small">
+        
+        <lightning-button label=" Edit Record Page" 
+        variant="brand"
+        onclick={recordEditAccountclickHandler} 
+        class="slds-var-p-around_small">
+
+        </lightning-button>
+    </div>
+    </lightning-card>
+</template>
