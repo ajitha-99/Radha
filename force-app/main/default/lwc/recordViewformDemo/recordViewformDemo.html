@@ -1,0 +1,38 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 08-12-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  inorder to render the field conditionally we use lwc:if condition. that's why we use
+  record-view-form which is not possible with record-form.
+-->
+<template>
+    <lightning-card title="Record-View-Form Demo - View the Record">
+        <lightning-record-view-form
+                object-api-name={objectApiName}
+                record-id={recordId}>
+
+            <div class="slds-grid slds-gutters">
+  <div class="slds-col">
+    <lightning-output-field
+     field-name={fieldNames.Name}
+    ></lightning-output-field>
+     <lightning-output-field
+     field-name={fieldNames.Industry}
+    ></lightning-output-field>
+  </div>
+  <div class="slds-col">
+    <lightning-output-field
+     field-name={fieldNames.Rating}
+    ></lightning-output-field>
+     <lightning-output-field
+     field-name={fieldNames.Revenue}
+    ></lightning-output-field>
+  </div>
+</div>
+
+
+        </lightning-record-view-form>
+    </lightning-card>
+</template>

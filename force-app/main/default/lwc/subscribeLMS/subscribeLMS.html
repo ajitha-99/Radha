@@ -6,13 +6,9 @@
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
-    <p>I am  Child component</p>
-        <div class="slds-var-p-around_small">
-             <lightning-button
-             label="Fire Event"
-             variant="brand"
-             onclick={handleClick}
-             ></lightning-button>
-
+    <lightning-card title="Subscriber LMS">
+        <div class="slds-var-p-around-small">
+            {pubMessage}
         </div>
+    </lightning-card>
 </template>

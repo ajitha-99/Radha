@@ -1,0 +1,47 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 08-12-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  when we don't provide record id it takes us to create record form page.
+  once created it automatically switches to view mode
+-->
+<template>
+    <lightning-card title="Record-Form Demo - View the Record">
+        <lightning-record-form
+                object-api-name={objectApiName}
+                record-id={recordId}
+                fields={fieldList}
+                columns="2"
+                mode="view">
+        </lightning-record-form>
+    </lightning-card>
+    <lightning-card title="Record-Form Demo - Readonly the Record">
+        <lightning-record-form
+                object-api-name={objectApiName}
+                record-id={recordId}
+                fields={fieldList}
+                columns="2"
+                mode="readonly">
+        </lightning-record-form>
+    </lightning-card>
+    <lightning-card title="Record-Form Demo - Edit the Record">
+        <lightning-record-form
+                object-api-name={objectApiName}
+                record-id={recordId}
+                fields={fieldList}
+                columns="2"
+                mode="edit"
+                onsuccess={showToast}>
+        </lightning-record-form>
+    </lightning-card>
+    <lightning-card title="Record-Form Demo - Create the Record">
+        <lightning-record-form
+                object-api-name={objectApiName}
+                fields={fieldList}
+                columns="2"
+                onsuccess={navigateToRecordPage}>
+        </lightning-record-form>
+    </lightning-card>
+</template>

@@ -12,4 +12,8 @@ firechildhandler(){
 
 }
 
+// the bubbles false and composed false then only child component is invoked
+//the bubbles true and composed false then parent and child component is invoked
+//the bubbles true and composed true then grand parent and parent and child is invoked
+
 }
