@@ -1,4 +1,11 @@
+import { createRecord } from 'lightning/uiRecordApi';
 import { LightningElement } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import TASK_MANAGER_OBJECT from '@salesforce/schema/Task_Manager__c';
+import TASK_NAME_FIELD from '@salesforce/schema/Task_Manager__c.Name';
+import TASK_DATE_FIELD from '@salesforce/schema/Task_Manager__c.Task_Date__c';
+import IS_COMPLETE_FIELD from '@salesforce/schema/Task_Manager__c.Is_Completed__c';
+import COMPLETED_DATE_FIELD from '@salesforce/schema/Task_Manager__c.Completed_Date__c';
 
 export default class ToDoApplication extends LightningElement {
 
@@ -35,16 +42,36 @@ addTaskHandler(event){
     if(this.validateTask()){
         //if the task is valid then push the task to the array using spread operator
         //push method doesn't work without @track decorator
-        this.incompletetask =[...this.incompletetask,{
-            taskname : this.taskname,
-            taskdate : this.taskdate
-        }
-        ];
-        this.resetChangeHandler();
-        // to override the existing array we use spread operator
-        let sortedArray = this.sortTask(this.incompletetask);
-           this.incompletetask = [...sortedArray];
-           console.log(this.incompletetask);
+        // this.incompletetask =[...this.incompletetask,{
+        //     taskname : this.taskname,
+        //     taskdate : this.taskdate
+        // }
+        // ];
+        // this.resetChangeHandler();
+        // // to override the existing array we use spread operator
+        // let sortedArray = this.sortTask(this.incompletetask);
+        //    this.incompletetask = [...sortedArray];
+        //    console.log(this.incompletetask);
+        let inputfields = {};
+        inputfields[TASK_NAME_FIELD.fieldApiName] = this.taskname;
+        inputfields[TASK_DATE_FIELD.fieldApiName] = this.taskdate;
+        inputfields[IS_COMPLETE_FIELD.fieldApiName] = false;
+
+        let recordInput = {
+            apiName: TASK_MANAGER_OBJECT.objectApiName,
+            fields : inputfields};
+
+        createRecord(recordInput)
+        .then((result) => {
+            console.log(result);
+            this.ShowToastEvent('Success', 'Task Added Successfully', 'success');
+            this.resetChangeHandler();
+            this.taskname = '';
+
+        })
+        .catch(error => {
+            console.log(error);
+        })
         }
         
     }
@@ -149,5 +176,14 @@ refreshData(index){
     // add the same entry in completed item
     this.completedtask = [...this.completedtask, removeitem[0]];
 }
+
+ShowToastEvent(title, message, variant){
+    const event = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: variant,
+        });
+        this.dispatchEvent(event);
+    }
 }
 
