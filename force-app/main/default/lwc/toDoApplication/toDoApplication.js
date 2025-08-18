@@ -1,4 +1,4 @@
-import { createRecord, deleteRecord } from 'lightning/uiRecordApi';
+import { createRecord, deleteRecord, updateRecord } from 'lightning/uiRecordApi';
 import { LightningElement, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import TASK_MANAGER_OBJECT from '@salesforce/schema/Task_Manager__c';
@@ -8,6 +8,7 @@ import IS_COMPLETE_FIELD from '@salesforce/schema/Task_Manager__c.Is_Completed__
 import COMPLETED_DATE_FIELD from '@salesforce/schema/Task_Manager__c.Completed_Date__c';
 import loadIncompleteTasks from '@salesforce/apex/toDoController.loadIncompleteTasks';
 import loadcompletedTasks from '@salesforce/apex/toDoController.loadcompletedTasks';
+import ID_FIELD from '@salesforce/schema/Task_Manager__c.Id';
 import {refreshApex} from '@salesforce/apex';
 
 export default class ToDoApplication extends LightningElement {
@@ -180,6 +181,7 @@ removalHandler(event){
     deleteRecord(recordId)
     .then(() => {
          this.ShowToastEvent('Deleted', 'Task Deleted Successfully', 'success');
+         refreshApex(this.incompleteTaskResult);
          
     }).catch((error) => {
         console.log("Error", error);
@@ -197,8 +199,8 @@ removalHandler(event){
 completetask(event){
     //remove the entry from incomplete
     // add the same entry in completed item
-    let index = event.target.name;
-    this.refreshData(index);
+    let recordId = event.target.name;
+    this.refreshData(recordId);
 
 
 }
@@ -213,19 +215,39 @@ allowDrop(event){
 }
 //whatever data we have to set during dragging we have read that data 
 dropElementHandler(event){
-    let index = event.dataTransfer.getData("index");
-        this.refreshData(index);
+    let recordId = event.dataTransfer.getData("index");
+    
+        this.refreshData(recordId);
 }
+//instead of using promise in return we can use async/await 
+//  and use it directly and then we can use await
+async refreshData(recordId){
 
-refreshData(index){
+    let inputfields = {};
+    inputfields[ID_FIELD.fieldApiName] = recordId;
+    inputfields[IS_COMPLETE_FIELD.fieldApiName] = true;
+    inputfields[COMPLETED_DATE_FIELD.fieldApiName] = new Date().toISOString().slice(0,10);
 
-     let removeitem =  this.incompletetask.splice(index, 1);
 
-    let sortedArray = this.sortTask(this.incompletetask);
-    this.incompletetask = [...sortedArray];
+    let recordInput = {
+        fields : inputfields
+    }
+ try{
+    await updateRecord(recordInput)
+     await refreshApex(this.incompleteTaskResult);
+      await refreshApex(this.completedTaskResult);
+      this.ShowToastEvent('Updated', 'Record Updated Successfully', 'success');
+  }catch(error){
+    console.log("Update Operation Failed", error);
+    this.ShowToastEvent('Updated', 'Record Updated Failed', 'error');
+  }
 
-    // add the same entry in completed item
-    this.completedtask = [...this.completedtask, removeitem[0]];
+    //  let removeitem =  this.incompletetask.splice(index, 1);
+    // let sortedArray = this.sortTask(this.incompletetask);
+    // this.incompletetask = [...sortedArray];
+
+    // // add the same entry in completed item
+    // this.completedtask = [...this.completedtask, removeitem[0]];
 }
 
 ShowToastEvent(title, message, variant){
