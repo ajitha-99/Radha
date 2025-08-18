@@ -1,11 +1,14 @@
-import { createRecord } from 'lightning/uiRecordApi';
-import { LightningElement } from 'lwc';
+import { createRecord, deleteRecord } from 'lightning/uiRecordApi';
+import { LightningElement, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import TASK_MANAGER_OBJECT from '@salesforce/schema/Task_Manager__c';
 import TASK_NAME_FIELD from '@salesforce/schema/Task_Manager__c.Name';
 import TASK_DATE_FIELD from '@salesforce/schema/Task_Manager__c.Task_Date__c';
 import IS_COMPLETE_FIELD from '@salesforce/schema/Task_Manager__c.Is_Completed__c';
 import COMPLETED_DATE_FIELD from '@salesforce/schema/Task_Manager__c.Completed_Date__c';
+import loadIncompleteTasks from '@salesforce/apex/toDoController.loadIncompleteTasks';
+import loadcompletedTasks from '@salesforce/apex/toDoController.loadcompletedTasks';
+import {refreshApex} from '@salesforce/apex';
 
 export default class ToDoApplication extends LightningElement {
 
@@ -13,6 +16,45 @@ export default class ToDoApplication extends LightningElement {
     taskdate = null;
     incompletetask = [];
     completedtask = [];
+    incompleteTaskResult;
+    completedTaskResult;
+//wire method is called when the component is loading or parameter is changing
+//we have to inform the salesforce to refresh the cache when we add new task 
+// //we use refresh apex and refresh apex is a method provided by salesforce
+    
+// we have to store the data in a property to use refresh apex
+    @wire(loadIncompleteTasks)
+    wiredIncompleteTasks(result) {
+        this.incompleteTaskResult = result;
+        let{data,error} = result;
+        if (data) {
+            console.log("Incomplete Tasks :", data)
+            this.incompletetask = data.map((currItem)=>({
+                taskId : currItem.Id,
+                taskname : currItem.Name,
+                taskdate : currItem.Task_Date__c
+            }));
+            console.log("Incomplete task records", this.incompletetask);
+        }else if(error){
+            console.log(error);
+        } ;
+    }
+    @wire(loadcompletedTasks)
+    wiredcompletedTasks(result) {
+        this. completedTaskResult = result;
+        let {data,error} = result;
+         if (data) {
+            console.log("Complete Tasks :", data)
+            this.completedtask = data.map((currItem)=>({
+                taskId : currItem.Id,
+                taskname : currItem.Name,
+                taskdate : currItem.Task_Date__c
+            }));
+            console.log("Incomplete task records", this.completedtask);
+        }else if(error){
+            console.log(error);
+        }
+    }
 
 changeHandler(event){
     let{name,value} = event.target;
@@ -66,12 +108,11 @@ addTaskHandler(event){
             console.log(result);
             this.ShowToastEvent('Success', 'Task Added Successfully', 'success');
             this.resetChangeHandler();
-            this.taskname = '';
+//refresh apex also returns promise.so if you want perform any action after the apex refresh
+//using .then method
+            refreshApex(this.incompleteTaskResult);
 
-        })
-        .catch(error => {
-            console.log(error);
-        })
+        });
         }
         
     }
@@ -95,8 +136,8 @@ else{
     // if not present it will return undefined
     //we can also use includes method to check the presence of the element in the array
      let taskitem = this.incompletetask.find(currItem => 
-     currItem.taskname === this.taskname &&
-     currItem.taskdate === this.taskdate
+     currItem.taskname === this.taskname 
+    // && currItem.taskdate === this.taskdate
 
        );
        if(taskitem){
@@ -134,11 +175,21 @@ sortTask(inputArr){
 //from index remove one item from array
 //after removing the element again we are resorting the array using the same method sortTask
 removalHandler(event){
-    let index = event.target.value;
-    this.incompletetask.splice(index, 1);
+    let recordId = event.target.name;
 
-    let sortedArray = this.sortTask(this.incompletetask);
-    this.incompletetask = [...sortedArray];
+    deleteRecord(recordId)
+    .then(() => {
+         this.ShowToastEvent('Deleted', 'Task Deleted Successfully', 'success');
+         
+    }).catch((error) => {
+        console.log("Error", error);
+        this.ShowToastEvent('Error', 'Something went wrong', 'error');
+    });
+        //refresh the list after the record is deleted)
+    // this.incompletetask.splice(index, 1);
+
+    // let sortedArray = this.sortTask(this.incompletetask);
+    // this.incompletetask = [...sortedArray];
 
 
 }
