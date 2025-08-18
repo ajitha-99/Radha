@@ -9,12 +9,14 @@
 public with sharing class AccountLwc {
     @AuraEnabled(cacheable=true)
     
-    public static List<Account> getAccount() {
+    public static List<Account> getAccount(String inputIndustry) {
 
     return [
-        SELECT Id, Name, Industry, Rating
+        SELECT id, Name, Industry, Rating
         FROM Account
-        WITH USER_MODE] ;  
+    //whatever the user is inputting we are selecting that industry value
+     where Industry =: inputIndustry
+        WITH USER_MODE];  
     }
 
     @AuraEnabled(cacheable=true)
@@ -24,4 +26,17 @@ public with sharing class AccountLwc {
         where AnnualRevenue != null
         WITH USER_MODE];
     }
+
+     @AuraEnabled
+        public static String updateTickerRecord(String recordId, String newTicker){
+            Account acc = new Account(Id = recordId, TickerSymbol = newTicker);
+            try {
+                update acc;
+                return 'Success: Account updated successfully';
+            }
+            catch (Exception e) {
+                return 'The following exception has occurred: ' + e.getMessage();
+        }
+
+     }
 }
