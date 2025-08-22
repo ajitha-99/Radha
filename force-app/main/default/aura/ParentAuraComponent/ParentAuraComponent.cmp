@@ -1,0 +1,14 @@
+
+<aura:component implements="flexipage:availableForAllPageTypes">
+ <c:childLwcAuraComponent 
+ aura:id="childlwc"
+ name="Tech Jouney with Ankit">
+ </c:childLwcAuraComponent>
+ <p class="slds-var-p-around_small">
+ <lightning:button 
+ variant="brand" 
+ label="Invoke Child Method" 
+ title="Brand action" 
+ onclick="{! c.handleClick }" />
+ </p>
+</aura:component>

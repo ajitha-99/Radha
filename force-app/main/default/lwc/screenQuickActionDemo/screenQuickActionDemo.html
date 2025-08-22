@@ -1,0 +1,36 @@
+<template>
+    <lightning-quick-action-panel
+        header=" Quick Edit Account">
+        <lightning-record-edit-form
+         record-id={recordId}
+            object-api-name={objectApiName}
+            onsuccess={successHandler}>
+            <div class="slds-m-around_medium">
+            <lightning-input-field
+                field-name={fields.accountName}></lightning-input-field>
+                <lightning-input-field
+                field-name={fields.accountIndustry}></lightning-input-field>
+                <lightning-input-field
+                field-name={fields.accountRating}></lightning-input-field>
+                </div>
+                <!--Footer is not required when we use record-edit-form-->
+                    <div class="slds-m-around_medium">
+                    <lightning-button
+                        variant="brand"
+                        type="submit"
+                        name="save"
+                        label="Save"
+                        class="slds-var-p-around_small">
+                    </lightning-button> 
+                    <lightning-button
+                    class="slds-var-p-around_small"
+                        variant="brand"
+                        name="cancel"
+                        label="Cancel"
+                        onclick={closeModal}>
+                    </lightning-button> 
+                </div>
+            </lightning-record-edit-form>
+
+    </lightning-quick-action-panel>
+</template>

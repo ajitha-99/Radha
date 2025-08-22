@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Aura LWC Child To Parent - Demo " icon-name="custom:custom14">
+    <div class="slds-var-p-around_small">
+        <lightning-input 
+        label ="Enter First Name"
+        name="fname"
+        onchange={changeHandler}>
+    </lightning-input>
+         <lightning-input 
+         name="lname"
+        label ="Enter Last Name"
+        onchange={changeHandler}>
+    </lightning-input>
+    </div>
+     <div class="slds-var-p-around_small">
+        <lightning-button 
+        
+        variant="brand"
+        label="Generate Full Name"
+        onclick={clickHandler}>
+    </lightning-button>
+    </div>
+    </lightning-card>   
+    
+</template>

@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <c:showMessageInParentAura onmessage="{! c.handleMessage}"></c:showMessageInParentAura>
+</aura:component>
+
+/*
+  From Aura you can invoke LWC
+  From LWC you cannot invoke Aura
+
+*/

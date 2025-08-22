@@ -1,7 +1,56 @@
 <template>
+    <lightning-card title="Check User Permissionsset Access- Demo " icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+            <template lwc:if={checkPermisson}>
+            <p >
+                You are authorised to view the message
+            </p>
+            </template>
+            <template lwc:else>
+            <p >You are not authorised to view the message</p>
+            </template>
+        </div>
+        </lightning-card>
+         <lightning-card title="Third Party CSS File Demo" icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+            <p class="animate__animated animate__bounce animate__delay-2s">
+                {userName}
+            </p>
+        </div>
+        </lightning-card>
+        <lightning-card title="Third Party JS File Demo" icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+            <p class="slds-text-heading_medium">
+                {displayDate}
+            </p>
+        </div>
+        </lightning-card>
+    <lightning-card title="LoggedIn User Details- Demo " icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+            <p class="slds-text-heading_medium">
+                {userName}
+            </p>
+        </div>
+        </lightning-card>
+    <lightning-card title="Custom Labels- Demo " icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+            <p class="slds-text-heading_medium">
+                {label.greeting}
+            </p>
+            <p class="slds-text-heading_medium">
+                {label.platform}
+            </p>
+        </div>
+        </lightning-card>
     <lightning-card title="Static Resources Demo">
         <div class="slds-var-p-around_small">
             <img src={mylogoImage}></img>
         </div>
-    </lightning-card>
+        </lightning-card>
+         <lightning-card title="Content Asset Resources Demo">
+        <div class="slds-var-p-around_small">
+            <img src={mylogoAsset}></img>
+        </div>
+        </lightning-card>
+    
 </template>
