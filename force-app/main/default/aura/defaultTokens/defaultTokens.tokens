@@ -1,0 +1,4 @@
+<aura:tokens>
+    <aura:token name="custombackground" value="#f5bc42"> 
+         </aura:token>
+</aura:tokens>

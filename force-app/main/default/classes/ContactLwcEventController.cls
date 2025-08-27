@@ -20,6 +20,39 @@ public with sharing class ContactLwcEventController {
             
             return conList;
     }
+@AuraEnabled(cacheable=true)
+    public static List<Contact> getContactListForDataTable() {
+        List<Contact> conList = [
+            Select Id,Email,Name,Title,Phone,Picture__c,Rank__c,AccountId, Account.Name 
+            FROM Contact 
+            WHERE AccountId != null 
+            WITH USER_MODE
+            LIMIT 10];
+            
+            return conList;
+    }
 
+    @AuraEnabled(cacheable=true)
+    public static List<Contact> getContactListBasedOnAccount(String accountId) {
+        List<Contact> conList = [
+            Select Id,
+            Name,
+            FirstName,
+            LastName,
+            Title,
+            Phone,
+            Email,
+            Picture__c,
+            Rank__c,
+            AccountId, 
+            Account.Name,
+            LeadSource
+            FROM Contact 
+            WHERE AccountId =: accountId 
+            WITH USER_MODE
+            LIMIT 10];
+            
+            return conList;
+    }
      
 }

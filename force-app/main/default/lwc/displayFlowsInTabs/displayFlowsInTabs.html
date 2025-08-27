@@ -1,0 +1,34 @@
+<template>
+    <lightning-tabset variant="vertical">
+       
+        <lightning-tab label="Hot Rating">
+        <lightning-flow
+        flow-api-name='Hot_Account_Rating'
+       >
+     </lightning-flow>
+    
+        </lightning-tab>
+        
+    <lightning-tab label="Warm Rating">
+       
+         <lightning-flow
+        flow-api-name='Warm_Account_Rating'
+        
+    >
+    </lightning-flow>
+   
+        </lightning-tab>
+        <lightning-tab label="Cold Rating">
+            
+           <lightning-flow
+        flow-api-name='Cold_Account_Rating'
+        
+    >
+    </lightning-flow>
+ 
+        </lightning-tab>
+        
+    </lightning-tabset>
+    
+
+</template>
