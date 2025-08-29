@@ -1,0 +1,11 @@
+<template>
+    <template lwc:if={contactList}>
+        <lightning-datatable 
+        key-field="Id" 
+        data={contactList} 
+        columns={columns} 
+        hide-checkbox-column=true 
+        onrowaction={handleRowAction}>
+    </lightning-datatable>
+    </template>
+</template>
